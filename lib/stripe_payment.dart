@@ -1,25 +1,10 @@
-import 'dart:async';
-
-import 'package:flutter/services.dart';
-
-class StripeSource {
-  static const MethodChannel _channel = const MethodChannel('stripe_payment');
-
-  /// opens the stripe dialog to add a new card
-  /// if the source has been successfully added the card token will be returned
-  static Future<String> addSource() async {
-    final String token = await _channel.invokeMethod('addSource');
-    return token;
-  }
-
-  static bool _publishableKeySet = false;
-
-  static bool get ready => _publishableKeySet;
-
-  /// set the publishable key that stripe should use
-  /// call this once and before you use [addSource]
-  static void setPublishableKey(String apiKey) {
-    _channel.invokeMethod('setPublishableKey', apiKey);
-    _publishableKeySet = true;
-  }
-}
+export 'src/android_pay_payment_request.dart';
+export 'src/apple_pay_payment_request.dart';
+export 'src/card_form_payment_request.dart';
+export 'src/error_codes.dart';
+export 'src/payment_intent.dart';
+export 'src/payment_method.dart';
+export 'src/source.dart';
+export 'src/source_params.dart';
+export 'src/stripe_payment.dart';
+export 'src/token.dart';
